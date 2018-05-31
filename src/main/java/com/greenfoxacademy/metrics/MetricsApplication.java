@@ -8,5 +8,7 @@ public class MetricsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MetricsApplication.class, args);
-	}
+
+      Metrics.send("some useful data", "template_service");
+    }
 }
