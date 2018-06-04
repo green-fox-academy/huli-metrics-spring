@@ -32,12 +32,12 @@ This the the template API, it contains all the required fields:
 predetermined name like edu_service currently
 Additional fields can be added in coordination with the MBT team.
 
-#### HEADERS
+##### HEADERS
 ```
 Content-Type: application/json
 ```
 
-#### BODY
+##### BODY
 ```
 {
 	"time": "1516107575123",
