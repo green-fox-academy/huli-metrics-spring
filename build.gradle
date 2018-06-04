@@ -1,32 +1,95 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.2.RELEASE'
+		//springBootVersion = '2.0.2.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		//classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+apply plugin: 'signing'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
 
-group = 'com.greenfoxacademy'
-version = '0.0.1-SNAPSHOT'
+group = 'com.greenfoxacademy.huli-metrics-spring'
+version = '1.0.1-RELEASE'
 sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 }
 
-
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter')
+	//compile('org.springframework.boot:spring-boot-starter')
 	compile ('org.json:json:20180130')
 	compile ('org.apache.httpcomponents:httpclient:4.5.5')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	//testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+signing {
+	sign configurations.archives
+}
+
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+				authentication(userName: 'fox-hms', password: 'Greenfox1@Greenfox2')
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+				authentication(userName: 'fox-hms', password: 'Greenfox1@Greenfox2')
+			}
+
+			pom.project {
+				name 'huli-metrics-spring'
+				packaging 'jar'
+				// optionally artifactId can be defined here
+				description 'Metrics library for Spring'
+				url 'http://github.com/green-fox-academy/huli-metrics-spring'
+
+				scm {
+					connection 'scm:git:git@github.com:green-fox-academy/huli-metrics-spring.git'
+					developerConnection 'scm:git:git@github.com:green-fox-academy/huli-metrics-spring.git'
+					url 'git@github.com:green-fox-academy/huli-metrics-spring.git'
+				}
+
+				licenses {
+					license {
+						name 'MIT License'
+						url 'https://www.opensource.org/licenses/mit-license'
+					}
+				}
+
+				developers {
+					developer {
+						id 'huli'
+						name 'Tamás Kökény'
+						email 'tamas.kokeny@greenfoxacademy.com'
+					}
+				}
+			}
+		}
+	}
 }
