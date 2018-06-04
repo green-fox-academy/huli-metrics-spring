@@ -4,8 +4,6 @@
 
 This is a java library that implements the `/event` endpoint client.
 
-- - - -
-
 Add this dependency to your build (in case of gradle use the build.gradle file):
 
 ```java
