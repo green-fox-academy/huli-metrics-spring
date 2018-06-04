@@ -4,7 +4,9 @@
 
 This is a java library that implements the `/event` endpoint client.
 
-> Add this dependency to your build (in case of gradle use the build.gradle file):
+- - - -
+
+Add this dependency to your build (in case of gradle use the build.gradle file):
 
 ```java
 dependencies {
@@ -12,13 +14,13 @@ dependencies {
 }
 ```
 
-> Import the external library:
+Import the external library:
 
 ```java
 import com.greenfoxacademy.metrics.Metrics;
 ```
 
-> Call the 'Metrics.send' method to target the internal metrics backend 
+Call the 'Metrics.send' method to target the internal metrics backend 
 application's endpoint with a json.
 
 ```java
@@ -33,7 +35,9 @@ predetermined name like edu_service currently
 Additional fields can be added in coordination with the MBT team.
 
 #### HEADERS
-**Content-Type**: application/json
+```
+Content-Type: application/json
+```
 
 #### BODY
 ```
