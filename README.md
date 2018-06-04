@@ -25,7 +25,7 @@ application's endpoint with a json.
 Metrics.send(level: "log", service_name: "template_service");
 ```
 
-This the the template API, it contains all the required fields:
+This is the template API, it contains all the required fields:
 - [x] time - is the current time the JSON is sent with
 - [x] level - is the type of the log like: LOG, ERROR etc. it takes a String format
 - [ ] service_name - is the name of the service the log comes from, this can only be a 
