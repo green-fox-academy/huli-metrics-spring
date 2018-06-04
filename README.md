@@ -30,6 +30,7 @@ This the the template API, it contains all the required fields:
 - [x] level - is the type of the log like: LOG, ERROR etc. it takes a String format
 - [ ] service_name - is the name of the service the log comes from, this can only be a 
 predetermined name like edu_service currently
+
 Additional fields can be added in coordination with the MBT team.
 
 ##### HEADERS
